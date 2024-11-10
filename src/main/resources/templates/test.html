@@ -1,0 +1,36 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Event Booking page - Welcome and choose an Event</title>
+  <style type="text/css">
+    body {
+      width: 800px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Search Booking by Event</h1>
+</header>
+<main>
+<form action="/viewBookingByEvent" method="get">
+  <input type="text" name="eventName">
+  <br>
+
+  <input type="submit" value="Submit">
+
+</form>
+  <br>
+  <h2>Bookings for Event</h2>
+  <div th:each="eventBooking : ${eventBookings}">
+      Name: <span th:text="${eventBooking.attendeeName}"></span>,
+      Address: <span th:text="${eventBooking.attendeeAddress}"></span>,
+      Event Name: <span th:text="${eventBooking.eventName}"></span>,
+      Number of Tickets : <span th:text="${eventBooking.numberOfTickets}"></span>
+    <br/>
+  </div>
+
+</main>
+</body>
+</html>
