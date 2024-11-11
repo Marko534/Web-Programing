@@ -46,7 +46,7 @@ public class EventListSevlet extends HttpServlet {
 
         events = (searchTerm == null || searchTerm.isEmpty())
                 ? eventService.listAll()
-                : eventService.searchEvents(searchTerm);
+                : eventService.searchEvents(searchTerm, 0.0);
 
         events = events.stream()
                 .filter(x -> x.getPopularityScore() >= minScore)

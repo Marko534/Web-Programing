@@ -22,4 +22,28 @@ public class EventBookingRepository {
                 .filter(eventBooking -> eventBooking.getEventName().contains(eventName))
                 .collect(Collectors.toList());
     }
+
+    public EventBooking save(EventBooking eventBooking) {
+        DataHolder.eventBookings.add(eventBooking);
+        return eventBooking;
+    }
+
+    public List<EventBooking> findAll() {
+        return DataHolder.eventBookings;
+    }
+
+    public List<EventBooking> findByEventName(String eventName) {
+        return DataHolder.eventBookings.stream()
+                .filter(eventBooking -> eventBooking.getEventName().contains(eventName))
+                .toList();
+    }
+
+    public List<EventBooking> findByAttendeeName(String attendeeName) {
+        return DataHolder.eventBookings.stream()
+                .filter(booking -> booking.getAttendeeName().equals(attendeeName))
+                .toList();
+    }
+
+
+
 }
