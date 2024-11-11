@@ -5,5 +5,5 @@ import mk.ukim.finki.wp.lab.model.EventBooking;
 import java.util.List;
 
 public interface ViewBookingByEventService{
-    public List<EventBooking> findBookingByEventName(String eventName);
+    List<EventBooking> findBookingByEventName(String eventName);
 }

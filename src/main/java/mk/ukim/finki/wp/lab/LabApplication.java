@@ -1,4 +1,4 @@
-//Lab 1
+//Lab 2
 package mk.ukim.finki.wp.lab;
 
 import org.springframework.boot.SpringApplication;

@@ -1,31 +1,31 @@
 package mk.ukim.finki.wp.lab.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.*;
 
 @Data
 @Entity
 @NoArgsConstructor
-public class Event {
+public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
+    private String address;
+    private String capacity;
     private String description;
-    private double popularityScore;
 
-    @ManyToOne
-    private Location location;
-
-    public Event(String name, String description, double popularityScore, Location location) {
+    public Location(String name, String address, String capacity, String description) {
         this.id = (long) (Math.random() * 1000);
         this.name = name;
+        this.address = address;
+        this.capacity = capacity;
         this.description = description;
-        this.popularityScore = popularityScore;
-        this.location = location;
     }
 }
