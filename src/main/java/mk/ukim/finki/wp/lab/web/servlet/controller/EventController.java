@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping(value = {"/","/events"})
+@RequestMapping(value = {"/", "/events"})
 public class EventController {
     private final EventService eventService;
     private final LocationService locationService;
@@ -51,6 +51,31 @@ public class EventController {
         return "listEvents";
     }
 
+    @GetMapping("/book")
+    public String getBookingPage(
+            @RequestParam(required = false) String searchText,
+            @RequestParam(required = false) Double minScore,
+            @RequestParam(required = false) String error,
+            Model model) {
+
+        List<Event> eventList;
+
+        if (minScore == null) {
+            minScore = 0.0;
+        }
+        eventList = eventService.searchEvents(searchText, minScore);
+
+
+        model.addAttribute("searchText", searchText);
+        model.addAttribute("minRating", minScore);
+
+        model.addAttribute("bookings", eventBookingService);
+        model.addAttribute("events", eventList);
+        model.addAttribute("error", error);
+
+        return "bookEvents";
+    }
+
     @GetMapping("/add")
     public String showAddEventForm(Model model) {
         model.addAttribute("locations", locationService.findAll());
@@ -66,6 +91,7 @@ public class EventController {
         model.addAttribute("locations", locationService.findAll());
         return "addEvent";
     }
+
     @GetMapping("/edit/{eventId}")
     public String editEvent(@PathVariable Long eventId, Model model) {
         // Retrieve the event based on the ID

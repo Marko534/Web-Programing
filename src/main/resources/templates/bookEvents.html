@@ -28,39 +28,33 @@
         <input type="submit" value="Search">
     </form>
 
-    <a href="/events/add">
-        Add new Event.
-    </a>
+    <h2>Choose an event:</h2>
+    <!--    <form action="/events/eventBooking" method="post">-->
+    <form th:method="POST" th:action="@{'/eventBooking'}">
+        <input type="submit" value="Submit">
 
-    <a href="/events/book">
-        Book Event.
-    </a>
-
-    <h2>Available events:</h2>
         <div th:each="event : ${events}">
+            <label>
+                <input type="radio" name="eventName" th:value="${event.name}">
                 Name: <span th:text="${event.name}"></span>,
                 Rating: <span th:text="${#numbers.formatDecimal(event.popularityScore, 0, 2)}"></span>,
                 <br>
                 Location: <span th:text="${event.location.name}"></span>
                 <br>
-                Description: <span th:text="${event.description}"></span>,
-                <br>
-
-                <form th:method="POST" style="display: inline-block"
-                      th:action="@{'/events/{id}/delete'(id=${event.id})}">
-                    <button type="submit">Delete</button>
-                </form>
-
-                <form th:method="POST" style="display: inline-block" th:action="@{'/events/{id}/like'(id=${event.id})}">
-                    <button type="submit">Like</button>
-                </form>
-
-
-                <a th:href="@{'/events/{id}/edit' (id=${event.id})}">
-                    <button type="button" th:form="form-container">Edit Event</button>
-                </a>
-
+                Description: <span th:text="${event.description}"></span>
+            </label><br/><br/>
         </div>
+
+        <h2>Name and surname</h2>
+
+        <input type="text" name="attendeeName">
+        <br>
+
+        <h2>Choose number of tickets:</h2>
+        <input type="number" name="numTickets" min="1"><br/>
+        <input type="submit" value="Submit">
+
+    </form>
 </main>
 </body>
 </html>
