@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp.lab.repository;
+package mk.ukim.finki.wp.lab.repository.inmemory;
 
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public class EventRepository {
+//@Repository
+public class InMemoryEventRepository {
 
     public List<Event> findAll() {
         return DataHolder.events;

@@ -11,6 +11,6 @@ public interface EventService {
     Optional<Event> save(String name, String description, Double popularityScore, Long locationId);
     Optional<Event>findById(Long id);
     Optional<Event>update(Long id, String name, String description, Double popularityScore, Long locationId);
-    Optional<Event>delete(Long id);
+    void delete(Long id);
     Optional<Event>like(long id);
 }

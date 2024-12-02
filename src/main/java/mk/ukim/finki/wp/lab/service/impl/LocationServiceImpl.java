@@ -2,7 +2,7 @@ package mk.ukim.finki.wp.lab.service.impl;
 
 
 import mk.ukim.finki.wp.lab.model.Location;
-import mk.ukim.finki.wp.lab.repository.LocationRepository;
+import mk.ukim.finki.wp.lab.repository.jpa.LocationRepository;
 import mk.ukim.finki.wp.lab.service.LocationService;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +19,6 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public List<Location> findAll() {
-        return this.locationRepository.findAll();
-    }
+
+        return this.locationRepository.findAll();}
 }

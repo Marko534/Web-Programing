@@ -1,9 +1,7 @@
 package mk.ukim.finki.wp.lab.service.impl;
 
-import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.EventBooking;
 import mk.ukim.finki.wp.lab.repository.EventBookingRepository;
-import mk.ukim.finki.wp.lab.repository.EventRepository;
 import mk.ukim.finki.wp.lab.service.EventBookingService;
 import org.springframework.stereotype.Service;
 

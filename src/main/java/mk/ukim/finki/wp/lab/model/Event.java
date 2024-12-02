@@ -19,7 +19,9 @@ public class Event {
     private double popularityScore;
 
     @ManyToOne
+    @JoinColumn(name = "location_id", nullable = false) // Foreign key column
     private Location location;
+
 
     public Event(String name, String description, double popularityScore, Location location) {
         this.id = (long) (Math.random() * 1000);
@@ -28,4 +30,5 @@ public class Event {
         this.popularityScore = popularityScore;
         this.location = location;
     }
+
 }
