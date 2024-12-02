@@ -13,4 +13,5 @@ public interface EventService {
     Optional<Event>update(Long id, String name, String description, Double popularityScore, Long locationId);
     void delete(Long id);
     Optional<Event>like(long id);
+    List<Event>fintByLocation_Id(long id);
 }

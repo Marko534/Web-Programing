@@ -82,5 +82,10 @@ public class EventServiceImpl implements EventService {
         return Optional.of(eventRepository.save(event));
     }
 
+    @Override
+    public List<Event> fintByLocation_Id(long id) {
+        return eventRepository.findAllByLocation_Id(id);
+    }
+
 
 }

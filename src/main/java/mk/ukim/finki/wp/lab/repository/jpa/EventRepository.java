@@ -19,4 +19,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     // Combined search for text in name/description and minimum popularity score
     List<Event> findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCaseAndPopularityScoreGreaterThanEqual(
             String nameText, String descriptionText, double minScore);
+
+    List<Event> findAllByLocation_Id(Long locationId);
 }
