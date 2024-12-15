@@ -13,6 +13,18 @@
 <body>
 <header>
     <h1>Welcome to our Event Booking App</h1>
+    <th:block sec:authorize="hasRole('ADMIN')">
+
+        <h2>
+            You are longed in!
+        </h2>
+    </th:block>
+    <th:block sec:authorize="!hasRole('ADMIN')">
+
+        <h2>
+            You are NOT longed in!
+        </h2>
+    </th:block>
 </header>
 <main>
     <h2>Search for an event:</h2>
@@ -37,30 +49,55 @@
     </a>
 
     <h2>Available events:</h2>
-        <div th:each="event : ${events}">
-                Name: <span th:text="${event.name}"></span>,
-                Rating: <span th:text="${#numbers.formatDecimal(event.popularityScore, 0, 2)}"></span>,
-                <br>
-                Location: <span th:text="${event.location.name}"></span>
-                <br>
-                Description: <span th:text="${event.description}"></span>,
-                <br>
+    <div th:each="event : ${events}">
+        Name: <span th:text="${event.name}"></span>,
+        Rating: <span th:text="${#numbers.formatDecimal(event.popularityScore, 0, 2)}"></span>,
+        <br>
+        Location: <span th:text="${event.location.name}"></span>
+        <br>
+        Description: <span th:text="${event.description}"></span>,
+        <br>
 
-                <form th:method="POST" style="display: inline-block"
-                      th:action="@{'/events/{id}/delete'(id=${event.id})}">
-                    <button type="submit">Delete</button>
-                </form>
+        <th:block sec:authorize="hasRole('ADMIN')">
 
-                <form th:method="POST" style="display: inline-block" th:action="@{'/events/{id}/like'(id=${event.id})}">
-                    <button type="submit">Like</button>
-                </form>
+            <form th:method="POST" style="display: inline-block"
+                  th:action="@{'/events/{id}/delete'(id=${event.id})}">
+                <button type="submit">Delete</button>
+            </form>
+        </th:block>
+        <form th:method="POST" style="display: inline-block" th:action="@{'/events/{id}/like'(id=${event.id})}">
+            <button type="submit">Like</button>
+        </form>
 
 
-                <a th:href="@{'/events/{id}/edit' (id=${event.id})}">
-                    <button type="button" th:form="form-container">Edit Event</button>
-                </a>
+        <th:block sec:authorize="hasRole('ADMIN')">
 
-        </div>
+            <a th:href="@{'/events/{id}/edit' (id=${event.id})}">
+                <button type="button" th:form="form-container">Edit Event</button>
+            </a>
+        </th:block>
+
+    </div>
+
+    <br>
+
+
+    <th:block sec:authorize="!hasRole('ADMIN')">
+
+        <form th:action="@{/login}" method="post">
+            <button type="submit">login</button>
+        </form>
+    </th:block>
+
+    <th:block sec:authorize="hasRole('ADMIN')">
+
+        <form th:action="@{/logout}" method="post" onsubmit="return confirm('Are you sure you want to log out?');">
+            <button type="submit">Logout</button>
+        </form>
+
+    </th:block>
+
+
 </main>
 </body>
 </html>
