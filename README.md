@@ -2,7 +2,7 @@
 
 ## Startup 
 
-### Start database 
+### Start database for Linux
 
 ```bash
   sudo systemctl start postgresql
